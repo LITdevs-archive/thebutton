@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>Recaptcha Testing</title>
+</head>
+
+<body>
+    <h1>
+        captcha time
+    </h1>
+    <% if(captcha) {%>
+        <form action="/" method="POST">
+           <%- captcha%>
+           <button type='submit'>Submit Captcha</button>
+           <br>
+        </form>
+        
+    <% } else {%>
+         <% if (error){%>
+             <div>Error : <%=error%></div>
+             <a href="/">Do it again!</a>
+             <% }else{ %>
+                  <div>Data : <%=data%></div>
+               <a href="/">Do it again!</a>
+               <% }%>
+    <%}%>
+        <script>
+            function cb(token) {
+                /*
+                I would like to note that this isn't designed by me. 
+                I took it off the example project of the node package, it seems a bit silly to me.
+                Surely there is a better way, but it works so I'll stick with it.
+
+                - Skelly
+                */
+                var input = document.createElement('input'); 
+                input.style.display = "none"
+                input.setAttribute('type', 'text');
+                input.setAttribute('name', 'g-recaptcha-response');
+                input.setAttribute('value', token);
+                document.getElementsByTagName('form')[0].appendChild(input);
+            }
+        </script>
+    </body>
+</html>
+
