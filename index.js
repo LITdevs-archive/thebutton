@@ -13,8 +13,6 @@ const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	max: 1 // limit each IP to 100 requests per windowMs
 });
-
-app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -35,7 +33,7 @@ app.get('*', recaptcha.middleware.render, function(req, res){
 
 
 
-app.post('*', recaptcha.middleware.verify, function(req, res){ 
+app.post('*', recaptcha.middleware.verify, limiter, function(req, res){ 
 	if(req.recaptcha.error == "timeout-or-duplicate") return res.redirect('/?captcha=timeout')
 	if (req.recaptcha.data && req.recaptcha.data.score < 0.7) return res.status(403).redirect('/?captcha=failed')
 	if (req.recaptcha.error) return res.status(500).send(req.recaptcha.error)
