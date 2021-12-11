@@ -140,12 +140,13 @@ box-lol {
 		input.setAttribute('name', 'g-recaptcha-response');
 		input.setAttribute('value', token);
 		document.getElementsByTagName('form')[0].appendChild(input);
-		document.getElementById("submitButton").disabled = false;
+		document.getElementById("submitButton").disabled = <%=!isAlive %>;
 		setInterval(() => {
 			fetch('/health')
 			.then(response => response.json())
 			.then(data => {
 				document.getElementById("alive").innerHTML = data.isAlive;
+				document.getElementById("submitButton").disabled = !data.isAlive;
 				document.getElementById("healthLevel").innerHTML = data.healthLevel;
 			});
 		}, 6000)
