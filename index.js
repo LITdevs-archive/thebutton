@@ -33,7 +33,7 @@ app.get('/style.css', function(req, res) {
 
 
 app.get('*', recaptcha.middleware.render, function(req, res){
-	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel(), isAlive: button.isAlive() })
+	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel(), isAlive: button.isAlive(), healthNumber: button.health(), userRank: req.session.rank ? req.session.rank : null })
 });
 
 
