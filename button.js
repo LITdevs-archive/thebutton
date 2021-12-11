@@ -45,6 +45,8 @@ const ranks = [
 // Hello, It's me again. I am not sure this is the smartest way but it doesnt actually really matter.
 function init() {
 	var healthDecrease = setInterval(() => {
+		console.log(data.health)
+		console.log(data.health <= 0)
 		if(data.health <= 0){
 			data.isAlive = false
 			data.health = 0
