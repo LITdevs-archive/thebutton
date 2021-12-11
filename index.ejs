@@ -32,7 +32,7 @@ button {
     color: #ccc;
     width: 220px;
     height: 70px;
-    border: 1px solid #338033;
+    border: 1px solid <% if(isAlive) { %>#338033<% } else { %>#c2001a<% } %>;
     font-size: 18px;
     border-radius: 4px;
     transition: .6s;
@@ -72,7 +72,7 @@ button:after {
 }
 
 button:hover {
-    background: #338033;
+    background: <% if(isAlive) { %>#338033<% } else { %>#c2001a<% } %>;
     cursor: pointer;
 }
 
@@ -96,7 +96,7 @@ box-lol {
     color: #ccc;
     width: 220px;
     height: 70px;
-    border: 1px solid #338033;
+    border: 1px solid <% if(isAlive) { %>#338033<% } else { %>#c2001a<% } %>;
     font-size: 18px;
     border-radius: 4px;
     transition: .6s;
