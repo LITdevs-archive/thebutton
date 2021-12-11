@@ -4,11 +4,10 @@
 		<title>the button.</title>
 	</head>
 	<body>
-		<h1>
-			captcha time
-		</h1>
-		<p>Alive: <%=isAlive %></p>
-		<p>Health Level: <%=health %></p>
+		<h1>The Button</h1>
+		<h2>Click the Button to restore it to full health, the lower it's health is when you click it, the higher the rank you get will be.</h2>
+		<p>Alive: <span id="alive"><%=isAlive %></span></p>
+		<p>Health Level: <span id="healthLevel"><%=health %></span></p>
 		<form action="/" method="POST">
 		<%- captcha%>
 		<button type='submit' disabled id="submitButton">Submit Captcha</button><br/>
@@ -29,9 +28,16 @@
 				input.setAttribute('value', token);
 				document.getElementsByTagName('form')[0].appendChild(input);
 				document.getElementById("submitButton").disabled = false;
+				setInterval(() => {
+					fetch('/health')
+					.then(response => response.json())
+					.then(data => {
+						document.getElementById("alive").innerHTML = data.isAlive;
+						document.getElementById("healthLevel").innerHTML = data.healthLevel;
+					});
+				}, 6000)
 				setTimeout(() => {
-					document.getElementById("submitButton").disabled = true;
-					document.getElementById("submitButton").innerHTML = "Please refresh the page to press the button.";
+					window.reload()
 				}, 120000)
 			}
 		</script>

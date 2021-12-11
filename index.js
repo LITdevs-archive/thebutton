@@ -21,11 +21,11 @@ app.use(session({
 app.set('view engine', 'ejs');
 
 app.get("/health", function(req, res){
-	res.send({healthLevel: button.healthLevel, isAlive: button.isAlive, health: button.health})
+	res.send({healthLevel: button.healthLevel(), isAlive: button.isAlive(), health: button.health()})
 })
 
 app.get('*', recaptcha.middleware.render, function(req, res){
-	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel, isAlive: button.isAlive })
+	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel(), isAlive: button.isAlive() })
 });
 
 

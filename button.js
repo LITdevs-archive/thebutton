@@ -79,11 +79,23 @@ function slapthebutton() {
 	}
 }
 
+function isAlive() {
+	return data.isAlive
+}
+
+function health() {
+	return data.health
+}
+
+function healthLevel() {
+	return data.healthLevel
+}
+
 module.exports = {
 	getRank,
 	init,
 	slapthebutton,
-	isAlive: data.isAlive,
-	health: data.health,
-	healthLevel: data.healthLevel
+	isAlive: isAlive,
+	health: health,
+	healthLevel: healthLevel
 }
