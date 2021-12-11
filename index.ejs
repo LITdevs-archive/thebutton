@@ -205,12 +205,12 @@ box-lol {
 				document.getElementById("bar").style.width = `${data.health}px`;
 				document.getElementById("bar").style.backgroundColor = roleNameToHex(data.healthLevel);
 				if (!data.isAlive) {
-					document.location.reload()
+					location.reload()
 				}
 			});
 		}, 6000)
 		setTimeout(() => {
-			window.reload()
+			location.reload()
 		}, 120000)
 	}
 </script>
