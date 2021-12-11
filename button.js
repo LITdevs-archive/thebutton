@@ -11,32 +11,32 @@ const data = require("./data.json")
 
 const ranks = [
 	{
-		name: "A",
+		name: "Absolute Noob",
 		maxHealth: 360,
 		minHealth: 291,
 	},
 	{
-		name: "B",
+		name: "Kind of a cool person",
 		maxHealth: 290,
 		minHealth: 221
 	},
 	{
-		name: "C",
+		name: "Cool person",
 		maxHealth: 220,
 		minHealth: 161
 	},
 	{
-		name: "D",
+		name: "MEDIC",
 		maxHealth: 160,
 		minHealth: 101
 	},
 	{
-		name: "E",
+		name: "Saviour",
 		maxHealth: 100,
 		minHealth: 41
 	},
 	{
-		name: "F",
+		name: "h",
 		maxHealth: 40,
 		minHealth: 1
 	}
