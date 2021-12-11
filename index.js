@@ -9,7 +9,12 @@ var recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPT
 const app = express()
 const port = 83
 button.init()
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 1 // limit each IP to 100 requests per windowMs
+});
 
+app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -27,6 +32,7 @@ app.get("/health", function(req, res){
 app.get('*', recaptcha.middleware.render, function(req, res){
 	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel(), isAlive: button.isAlive() })
 });
+
 
 
 app.post('*', recaptcha.middleware.verify, function(req, res){ 
