@@ -31,7 +31,9 @@ app.get('*', recaptcha.middleware.render, function(req, res){
 	res.render(__dirname + '/index.ejs', { captcha: res.recaptcha, health: button.healthLevel(), isAlive: button.isAlive() })
 });
 
-
+app.get('/style.css', function(req, res) {
+	res.sendFile(__dirname + '/style.css')
+})
 
 app.post('*', recaptcha.middleware.verify, limiter, function(req, res){ 
 	if(req.recaptcha.error == "timeout-or-duplicate") return res.redirect('/?captcha=timeout')

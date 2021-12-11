@@ -1,73 +1,61 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>the button.</title>
-	</head>
-	<body>
-		<h1>The Button</h1>
-		<h2>Click the Button to restore it to full health, the lower it's health is when you click it, the higher the rank you get will be.</h2>
-		<p>Alive: <span id="alive"><%=isAlive %></span></p>
-		<p>Health Level: <span id="healthLevel"><%=health %></span></p>
-		<form action="/" method="POST">
-		<%- captcha%>
-		<button type='submit' disabled id="submitButton">Submit Captcha</button><br/>
-		</form> 
-		<script>
-
-			const ranks = [
-				{
-					name: "A",
-					color: ""
-				},
-				{
-					name: "B",
-					color: ""
-				},
-				{
-					name: "C",
-					color: ""
-				},
-				{
-					name: "D",
-					color: ""
-				},
-				{
-					name: "E",
-					color: ""
-				},
-				{
-					name: "F",
-					color: ""
-				}
-			]
-			function cb(token) {
-				/*
-				I would like to note that this isn't designed by me. 
-				I took it off the example project of the node package, it seems a bit silly to me.
-				Surely there is a better way, but it works so I'll stick with it.
-				Ok I made some small edits to it, but it is still quite stupid.
-				- Skelly
-				*/
-				var input = document.createElement('input'); 
-				input.style.display = "none"
-				input.setAttribute('type', 'text');
-				input.setAttribute('name', 'g-recaptcha-response');
-				input.setAttribute('value', token);
-				document.getElementsByTagName('form')[0].appendChild(input);
-				document.getElementById("submitButton").disabled = false;
-				setInterval(() => {
-					fetch('/health')
-					.then(response => response.json())
-					.then(data => {
-						document.getElementById("alive").innerHTML = data.isAlive;
-						document.getElementById("healthLevel").innerHTML = data.healthLevel;
-					});
-				}, 6000)
-				setTimeout(() => {
-					window.reload()
-				}, 120000)
-			}
-		</script>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link>
+    <link rel="stylesheet" href="./style.css">
+    <title>The Button</title>
+</head>
+<body>
+    <div class="container-1">
+        <div class="container-bar">
+            <div class="box-slash-container-of-bar">
+               <!-- Reminder: use js and horizontal bar graphs for the health, create 3, green, yellow and red each relatively reducing with a function call based on time. Make sure they are below this div else they wont be in the box--> 
+			   <p>Alive: <span id="alive"><%=isAlive %></span></p>
+			   <p>Health Level: <span id="healthLevel"><%=health %></span></p></div>
+        </div>
+        <div class="container-btn">
+            <div class="wrapper">
+                <div class="btn">
+					<form action="/" method="POST">
+					<%- captcha%>
+					<button type='submit' disabled id="submitButton">Click here</button><br/>
+					</form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+	function cb(token) {
+		/*
+		I would like to note that this isn't designed by me. 
+		I took it off the example project of the node package, it seems a bit silly to me.
+		Surely there is a better way, but it works so I'll stick with it.
+		Ok I made some small edits to it, but it is still quite stupid.
+		- Skelly
+		*/
+		var input = document.createElement('input'); 
+		input.style.display = "none"
+		input.setAttribute('type', 'text');
+		input.setAttribute('name', 'g-recaptcha-response');
+		input.setAttribute('value', token);
+		document.getElementsByTagName('form')[0].appendChild(input);
+		document.getElementById("submitButton").disabled = false;
+		setInterval(() => {
+			fetch('/health')
+			.then(response => response.json())
+			.then(data => {
+				document.getElementById("alive").innerHTML = data.isAlive;
+				document.getElementById("healthLevel").innerHTML = data.healthLevel;
+			});
+		}, 6000)
+		setTimeout(() => {
+			window.reload()
+		}, 120000)
+	}
+</script>
 </html>
-
