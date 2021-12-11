@@ -32,6 +32,7 @@ app.get('*', recaptcha.middleware.render, function(req, res){
 app.post('*', recaptcha.middleware.verify, function(req, res){ 
 	if(req.recaptcha.error == "timeout-or-duplicate") return res.redirect('/?captcha=timeout')
 	if (req.recaptcha.data && req.recaptcha.data.score < 0.7) return res.status(403).redirect('/?captcha=failed')
+	if (req.recaptcha.error) return res.status(500).send(req.recaptcha.error)
 	let resp = button.slapthebutton()
 	if(resp.message) return res.send(resp.message)
 	req.session.rank = resp.rank.name
