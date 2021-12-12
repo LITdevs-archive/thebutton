@@ -16,7 +16,7 @@ const limiter = rateLimit({
 	windowMs: 1000 * 60, // 1 minute
 	max: 1,
 	keyGenerator: function (req /*, res*/) {
-		return req.headers.cf-connecting-ip;
+		return req.headers["cf-connecting-ip"];
 	},
 	handler: function(req, res) {
 		return res.status(429).send("Lazy.")
