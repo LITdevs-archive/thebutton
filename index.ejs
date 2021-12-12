@@ -213,7 +213,7 @@ box-lol {
 				document.getElementById("submitButton").disabled = !data.isAlive;
 				document.getElementById("bar").style.width = `${data.health}px`;
 				document.getElementById("bar").style.backgroundColor = roleNameToHex(data.healthLevel);
-				document.querySelector("center").innerHTML = `${data.health}/360`;
+				document.getElementById("center").innerHTML = `${data.health}/360`;
 				if (!data.isAlive) {
 					location.reload()
 				}
