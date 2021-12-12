@@ -182,11 +182,13 @@ box-lol {
 		}
 		]
 	function roleNameToHex(roleName) {
-		ranks.forEach(rank => {
-			if (rank.name == roleName) {
-				return rank.color
-			}
-		})
+		return new Promise((resolve, reject) => {
+			ranks.forEach(rank => {
+				if (rank.name == roleName) {
+					resolve(rank.color)
+				}
+			})
+		});
 	}
 	function cb(token) {
 		/*
@@ -203,7 +205,9 @@ box-lol {
 		input.setAttribute('value', token);
 		document.getElementsByTagName('form')[0].appendChild(input);
 		document.getElementById("submitButton").disabled = <%=!isAlive %>;
-		document.getElementById("bar").style.backgroundColor = roleNameToHex("<%=health %>");
+		roleNameToHex("<%=health %>").then(color => {
+			document.getElementById("bar").style.backgroundColor = color;
+		})
 		
 	}
 	setInterval(() => {
@@ -213,7 +217,9 @@ box-lol {
 				.then(data => {
 					document.getElementById("submitButton").disabled = !data.isAlive;
 					document.getElementById("bar").style.width = `${data.health}px`;
-					document.getElementById("bar").style.backgroundColor = roleNameToHex(data.healthLevel);
+					roleNameToHex(data.healthLevel).then(color => {
+						document.getElementById("bar").style.backgroundColor = color;
+					})
 					if (!data.isAlive) {
 						location.reload()
 					}
