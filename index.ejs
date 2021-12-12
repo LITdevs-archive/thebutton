@@ -207,6 +207,7 @@ box-lol {
 		document.getElementById("submitButton").disabled = <%=!isAlive %>;
 		document.getElementById("bar").style.backgroundColor = roleNameToHex("<%=health %>");
 		setInterval(() => {
+			document.querySelector("center").innerHTML = `...`;
 			fetch('/health')
 			.then(response => response.json())
 			.then(data => {
