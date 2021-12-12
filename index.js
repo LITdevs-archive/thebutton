@@ -16,8 +16,7 @@ const limiter = rateLimit({
 	windowMs: 1000 * 60, // 1 minute
 	max: 1,
 	keyGenerator: function (req /*, res*/) {
-		console.log(req.headers)
-		return req.ip;
+		return req.headers.cf-connecting-ip;
 	}
 });
 const discordUrl = "https://discord.com/api/oauth2/authorize?client_id=876183728970412072&redirect_uri=https%3A%2F%2Fbutton.vukkybox.com%2Fdiscord&response_type=code&scope=identify"
