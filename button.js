@@ -62,7 +62,7 @@ function init() {
 		}
 		console.log("Health decreased! Now: ", data.health)
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4))
-	}, 60000)
+	}, 30000)
 }
 
 function getRank(health) {
