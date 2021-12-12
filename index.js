@@ -16,7 +16,7 @@ const limiter = rateLimit({
 	windowMs: 1000 * 60, // 1 minute
 	max: 1,
 	keyGenerator: function (req /*, res*/) {
-		console.log(req)
+		console.log(req.headers)
 		return req.ip;
 	}
 });
