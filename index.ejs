@@ -136,10 +136,11 @@ box-lol {
 					<form action="/" method="POST">
 					<%- captcha%>
 					<button type='submit' disabled id="submitButton">Click here to heal</button><br/>
+				</form> 
 					<% if(userRank) { %>
 						<a href="<%=discordUrl %>"><button type='submit' class="button-alt" id="submitButton">Claim your <%=userRank %> rank on Discord.</button></a><br/>
 					<% } %>
-				</form> 
+				
                 </div>
 				
             </div>
