@@ -17,6 +17,9 @@ const limiter = rateLimit({
 	max: 1,
 	keyGenerator: function (req /*, res*/) {
 		return req.headers.cf-connecting-ip;
+	},
+	handler: function(req, res) {
+		return res.status(429).send("Lazy.")
 	}
 });
 const discordUrl = "https://discord.com/api/oauth2/authorize?client_id=876183728970412072&redirect_uri=https%3A%2F%2Fbutton.vukkybox.com%2Fdiscord&response_type=code&scope=identify"
