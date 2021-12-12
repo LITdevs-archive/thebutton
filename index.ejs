@@ -151,15 +151,7 @@ box-lol {
     </div>
 </body>
 <script>
-	function cb(token) {
-		/*
-		I would like to note that this isn't designed by me. 
-		I took it off the example project of the node package, it seems a bit silly to me.
-		Surely there is a better way, but it works so I'll stick with it.
-		Ok I made some small edits to it, but it is still quite stupid.
-		- Skelly
-		*/
-		const ranks = [
+	const ranks = [
 		{
 			name: "Absolute Noob",
 			color: "#338033"
@@ -189,15 +181,21 @@ box-lol {
 			color: "#000000"
 		}
 		]
-
-		function roleNameToHex(roleName) {
-			ranks.forEach(rank => {
-				if (rank.name === roleName) {
-					return rank.color
-				}
-			})
-		}
-
+	function roleNameToHex(roleName) {
+		ranks.forEach(rank => {
+			if (rank.name == roleName) {
+				return rank.color
+			}
+		})
+	}
+	function cb(token) {
+		/*
+		I would like to note that this isn't designed by me. 
+		I took it off the example project of the node package, it seems a bit silly to me.
+		Surely there is a better way, but it works so I'll stick with it.
+		Ok I made some small edits to it, but it is still quite stupid.
+		- Skelly
+		*/
 		var input = document.createElement('input'); 
 		input.style.display = "none"
 		input.setAttribute('type', 'text');
@@ -206,7 +204,9 @@ box-lol {
 		document.getElementsByTagName('form')[0].appendChild(input);
 		document.getElementById("submitButton").disabled = <%=!isAlive %>;
 		document.getElementById("bar").style.backgroundColor = roleNameToHex("<%=health %>");
-		setInterval(() => {
+		
+	}
+	setInterval(() => {
 			console.log("getting new health");
 			fetch('/health')
 				.then(response => response.json())
@@ -223,6 +223,6 @@ box-lol {
 		setTimeout(() => {
 			location.reload()
 		}, 120000)
-	}
+	
 </script>
 </html>
