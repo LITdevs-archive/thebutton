@@ -7,7 +7,7 @@ require('dotenv').config()
 const fetch = require('node-fetch');
 const button = require('./button')
 
-var recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPTCHA_SECRET_KEY, {callback: "cb", "action": "buttonDEV"});
+var recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPTCHA_SECRET_KEY, {callback: "cb", "action": "button"});
 const app = express()
 const client = new Client({ intents: ["GUILDS", "GUILD_MEMBERS"] });
 const port = 83
