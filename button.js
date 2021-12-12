@@ -14,31 +14,37 @@ const ranks = [
 		name: "Absolute Noob",
 		maxHealth: 360,
 		minHealth: 291,
+		role: "919532607912427563"
 	},
 	{
 		name: "Kind of a cool person",
 		maxHealth: 290,
-		minHealth: 221
+		minHealth: 221,
+		role: "919532716532334654"
 	},
 	{
 		name: "Cool person",
 		maxHealth: 220,
-		minHealth: 161
+		minHealth: 161,
+		role: "919532849051340820"
 	},
 	{
 		name: "MEDIC",
 		maxHealth: 160,
-		minHealth: 101
+		minHealth: 101,
+		role: "919532899668197387"
 	},
 	{
 		name: "Saviour",
 		maxHealth: 100,
-		minHealth: 41
+		minHealth: 41,
+		role: "919532956396191794"
 	},
 	{
 		name: "h",
 		maxHealth: 40,
-		minHealth: 1
+		minHealth: 1,
+		role: "919533011605807155"
 	}
 ]
 
@@ -97,5 +103,6 @@ module.exports = {
 	slapthebutton,
 	isAlive: isAlive,
 	health: health,
-	healthLevel: healthLevel
+	healthLevel: healthLevel,
+	ranks: ranks
 }
