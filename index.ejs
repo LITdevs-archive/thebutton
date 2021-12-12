@@ -129,7 +129,6 @@ box-lol {
         <div class="container-bar">
             <div class="bar-align">
 				<div class="bar" id="bar">
-					<center></center>
 				</div>
 			</div>
         </div>
@@ -207,7 +206,7 @@ box-lol {
 		document.getElementById("submitButton").disabled = <%=!isAlive %>;
 		document.getElementById("bar").style.backgroundColor = roleNameToHex("<%=health %>");
 		setInterval(() => {
-			//document.querySelector("center").innerHTML = "...";
+			console.log("getting new health");
 			fetch('/health')
 				.then(response => response.json())
 				.then(data => {
@@ -217,6 +216,7 @@ box-lol {
 					if (!data.isAlive) {
 						location.reload()
 					}
+					console.log("new health is " + data.health)
 				});
 		}, 6000)
 		setTimeout(() => {
