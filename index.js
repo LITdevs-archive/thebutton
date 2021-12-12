@@ -77,6 +77,7 @@ app.get('/discord', function(req, res) {
 				.then(json => {
 					client.guilds.fetch(process.env.DISCORD_GUILD_ID).then(guild => {
 						guild.members.fetch(json.id).then(guildMember => {
+							if (!guildMember) return res.redirect("https://discord.gg/mmhPScCZH4")
 							roleNameToRoleId(req.session.rank).then(roleId => {
 								guild.roles.fetch(roleId).then(role => {
 									guildMember.roles.add(role, "New rank on The Button").then((gm) => {
