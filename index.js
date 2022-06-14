@@ -19,7 +19,7 @@ const limiter = rateLimit({
 		return req.headers["cf-connecting-ip"];
 	},
 	handler: function(req, res) {
-		return res.status(429).send("Lazy.")
+		return res.status(429).send("That's a bit too quick! You can heal the button once every minute.")
 	}
 });
 const discordUrl = "https://discord.com/api/oauth2/authorize?client_id=876183728970412072&redirect_uri=https%3A%2F%2Fbutton.vukkybox.com%2Fdiscord&response_type=code&scope=identify"
