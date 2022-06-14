@@ -11,40 +11,40 @@ const data = require("./data.json")
 
 const ranks = [
 	{
-		name: "Absolute Noob",
+		name: "A normal Vukky",
 		maxHealth: 360,
 		minHealth: 291,
-		role: "919532607912427563"
+		role: "986183600514940978"
 	},
 	{
 		name: "Kind of a cool person",
 		maxHealth: 290,
 		minHealth: 221,
-		role: "919532716532334654"
+		role: "986183740126527558"
 	},
 	{
 		name: "Cool person",
 		maxHealth: 220,
 		minHealth: 161,
-		role: "919532849051340820"
+		role: "986183886272872468"
 	},
 	{
-		name: "MEDIC",
+		name: "Button fanatic",
 		maxHealth: 160,
 		minHealth: 101,
-		role: "919532899668197387"
+		role: "986183997388365834"
 	},
 	{
-		name: "Saviour",
+		name: "Row-bot",
 		maxHealth: 100,
 		minHealth: 41,
-		role: "919532956396191794"
+		role: "986184105051947028"
 	},
 	{
-		name: "h",
+		name: "niko",
 		maxHealth: 40,
 		minHealth: 1,
-		role: "919533011605807155"
+		role: "986184227177496616"
 	}
 ]
 
