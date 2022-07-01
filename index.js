@@ -55,7 +55,8 @@ app.get('/style.css', function(req, res) {
 })
 
 app.get('/discord', function(req, res) {
-	if (!req.session.rank) return res.send("You do not have a rank!")
+	if (!req.session.rank) return res.status(400).send("Oh, hi! Are you poking around in the code?<br>In order to claim your rank, you need to actually have one first :)")
+	if (!req.query.code) return res.status(401).send(`Oh, hi! Are you poking around in the code?<br>If not, something happened that shouldn't have happened.<br>Not your fault, though! Try <a href="${discordUrl}">claiming your rank again</a>.`)
 	let code = req.query.code
 	if (code) {
 		try {
@@ -84,7 +85,7 @@ app.get('/discord', function(req, res) {
 				.then(json => {
 					client.guilds.fetch(process.env.DISCORD_GUILD_ID).then(guild => {
 						guild.members.fetch(json.id).then(guildMember => {
-							if (!guildMember) return res.redirect("https://discord.gg/mmhPScCZH4")
+							if (!guildMember) return res.status(400).send(`You're not in our Discord server yet!<br><a href="https://discord.gg/mmhPScCZH4">Join it</a>, then try <a href="${discordUrl}>claiming your rank again</a>.`)
 							roleNameToRoleId(req.session.rank).then(roleId => {
 								guild.roles.fetch(roleId).then(role => {
 									guildMember.roles.add(role, "New rank on The Button").then((gm) => {
@@ -113,7 +114,7 @@ app.get('*', recaptcha.middleware.render, function(req, res){
 app.post('*', recaptcha.middleware.verify, limiter, function(req, res){ 
 	console.log(`peepy peepy pepepepe peepypepepepepepep ${req.recaptcha.data.score}`)
 	if(req.recaptcha.error == "timeout-or-duplicate") return res.redirect('/?captcha=timeout')
-	if (req.recaptcha.data && req.recaptcha.data.score < 0.7) return res.status(403).redirect('/?captcha=failed')
+	if (req.recaptcha.data && req.recaptcha.data.score < 0.7) return res.status(403).send("You appear to be pressing the button using automated tools. Please do not do this.")
 	if (req.recaptcha.error) return res.status(500).send(req.recaptcha.error)
 	let resp = button.slapthebutton()
 	if(resp.message) return res.send(resp.message)
