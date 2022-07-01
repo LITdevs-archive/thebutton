@@ -31,6 +31,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }))
+app.use("/resources", express.static('resources'));
 
 app.set('view engine', 'ejs');
 

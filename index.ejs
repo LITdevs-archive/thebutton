@@ -216,6 +216,7 @@ box-lol {
 				.then(response => response.json())
 				.then(data => {
 					document.getElementById("submitButton").disabled = !data.isAlive;
+					if(document.getElementById("bar").style.width.split("px")[0] < data.health) new Audio("/resources/heal.wav").play();
 					document.getElementById("bar").style.width = `${data.health}px`;
 					roleNameToHex(data.healthLevel).then(color => {
 						document.getElementById("bar").style.backgroundColor = color;
