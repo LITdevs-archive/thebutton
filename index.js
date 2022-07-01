@@ -85,7 +85,7 @@ app.get('/discord', function(req, res) {
 				.then(json => {
 					client.guilds.fetch(process.env.DISCORD_GUILD_ID).then(guild => {
 						guild.members.fetch(json.id).then(guildMember => {
-							if (!guildMember) return res.status(400).send(`You're not in our Discord server yet!<br><a href="https://discord.gg/mmhPScCZH4">Join it</a>, then try <a href="${discordUrl}>claiming your rank again</a>.`)
+							if (!guildMember) return res.status(400).send(`You're not in our Discord server yet!<br><a href="https://discord.gg/mmhPScCZH4">Join it</a>, then try <a href="${discordUrl}">claiming your rank again</a>.`)
 							roleNameToRoleId(req.session.rank).then(roleId => {
 								guild.roles.fetch(roleId).then(role => {
 									guildMember.roles.add(role, "New rank on The Button").then((gm) => {
