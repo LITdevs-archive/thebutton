@@ -22,7 +22,7 @@ const limiter = rateLimit({
 		return res.status(429).send("That's a bit too quick! You can heal the button once every minute.<br><a href='/'>Go back.</a>")
 	}
 });
-const discordUrl = "https://discord.com/api/oauth2/authorize?client_id=876183728970412072&redirect_uri=https%3A%2F%2Fbutton.vukkybox.com%2Fdiscord&response_type=code&scope=identify"
+const discordUrl = "https://discord.com/api/oauth2/authorize?client_id=876183728970412072&redirect_uri=https%3A%2F%2Fbutton.vukkybox.com%2Fdiscord&response_type=code&scope=identify&prompt=consent"
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -87,9 +87,10 @@ app.get('/discord', function(req, res) {
 						guild.members.fetch(json.id).then(guildMember => {
 							if (!guildMember) return res.status(400).send(`You're not in our Discord server yet!<br><a href="https://discord.gg/mmhPScCZH4">Join it</a>, then try <a href="${discordUrl}">claiming your rank again</a>.`)
 							roleNameToRoleId(req.session.rank).then(roleId => {
+								if(guildMember.roles.has(roleId)) return res.send(`You have already claimed the ${req.session.rank} rank.<br><a href='/'>Go back.</a>`);
 								guild.roles.fetch(roleId).then(role => {
 									guildMember.roles.add(role, "New rank on The Button").then((gm) => {
-										res.redirect('/')
+										res.send(`<b>Congratulations!</b> You have claimed the ${req.session.rank} rank.<br><a href='/'>Go back.</a>`)
 									})
 
 								})
