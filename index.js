@@ -76,6 +76,7 @@ app.get('/discord', function(req, res) {
 			})
 			.then(res => res.json())
 			.then(json => {
+				if (json.error) return res.send(`Invalid code in request... probably...<br>${json.error}`);
 				fetch('https://discord.com/api/users/@me', {
 					headers: {
 						authorization: `${json.token_type} ${json.access_token}`,
