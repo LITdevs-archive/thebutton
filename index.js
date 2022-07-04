@@ -114,7 +114,7 @@ app.get('*', recaptcha.middleware.render, function(req, res){
 
 
 app.post('*', recaptcha.middleware.verify, limiter, function(req, res){ 
-	console.log(`peepy peepy pepepepe peepypepepepepepep ${req.recaptcha.data.score} ${req.headers["cf-connecting-ip"]}`)
+	console.log(`peepy peepy pepepepe peepypepepepepepep ${req.recaptcha.data.score} ${req.headers["cf-connecting-ip"]} (${req.headers["X-Forwarded-For"]})`)
 	if(req.recaptcha.error == "timeout-or-duplicate") return res.redirect('/?captcha=timeout')
 	if (req.recaptcha.data && req.recaptcha.data.score < 0.9) return res.status(403).send("You appear to be pressing the button using automated tools. Please do not this.")
 	if (req.recaptcha.error) return res.status(500).send(req.recaptcha.error)
