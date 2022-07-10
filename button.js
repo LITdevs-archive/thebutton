@@ -43,8 +43,26 @@ const ranks = [
 	{
 		name: "niko",
 		maxHealth: 40,
-		minHealth: 1,
+		minHealth: 21,
 		role: "986184227177496616"
+	},
+	{
+		name: "h",
+		maxHealth: 20,
+		minHealth: 11,
+		role: "995604770888892447"
+	},
+	{
+		name: "no pls",
+		maxHealth: 10,
+		minHealth: 2,
+		role: "995605245176590387"
+	},
+	{
+		name: "touch grass",
+		maxHealth: 1,
+		minHealth: 1,
+		role: "995605690838159360"
 	}
 ]
 
@@ -62,7 +80,8 @@ function init() {
 		}
 		console.log("Health decreased! Now: ", data.health)
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4))
-	}, 30000)
+	//}, 30000)
+	}, 15000)
 }
 
 function getRank(health) {
