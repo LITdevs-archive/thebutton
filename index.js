@@ -92,6 +92,7 @@ app.get('/discord', function(req, res) {
 								guild.roles.fetch(roleId).then(role => {
 									guildMember.roles.add(role, "New rank on The Button").then((gm) => {
 										res.send(`<b>Congratulations!</b> You have claimed the ${req.session.rank} rank.<br><a href='/'>Go back.</a>`)
+                                                                                req.session.destroy();
 									})
 
 								})
